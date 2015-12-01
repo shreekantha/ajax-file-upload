@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Upload</title>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#upload").click(function(){
+		
+		var formData=new FormData();
+		formData.append("name",$("#name").val());
+		formData.append("email",$("#email").val());
+		formData.append("mobile",$("#mobile").val());
+		formData.append("file",$("#image")[0].files[0]);
+		
+		  $.ajax({
+			url:"register",
+			method:"POST",
+			processData: false,
+			contentType: false,
+			enctype:"multipart/form-data",
+			data:formData,
+			success:function(data){
+				alert(data);
+				}
+			}); 
+			
+		});
+});
+	</script>
+</head>
+<body>
+	<p>
+		<label>Name:</label> <input type="text" name="name" id="name" />
+	</p>
+	<p>
+		<label>Email</label> <input type="text" name="email" id="email" />
+	</p>
+	<p>
+		<label>Mobile</label> <input type="text" name="mobile" id="mobile" />
+	</p>
+	<p>
+		<label>File</label> <input type="file" name="image" id="image" />
+	</p>
+	<button id="upload">Upload</button>
+</body>
+</html>
